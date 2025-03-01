@@ -85,15 +85,19 @@ A    |B
 
 3. "Data Cleaning":
    ---
-From the data assessment, the satisfaction level column was identified as having two missing values. the two rows of informa can be deleted as the numbers are 
+During the data assessment, it was discovered that the Satisfaction Level column contained two missing values. To address this, two possible approaches can be used:
 
-To resolve this issue, we would use the to_datetime() function from the Pandas library:
+a. Deleting the Rows – Since only two values are missing, removing them would have a negligible impact on the analysis.  
+b. Filling the Missing Values – Instead of deletion, the missing values can be categorized appropriately. Typically, missing categorical values are assigned to the most frequent category. In this case, the Satisfied category appears most often. However, since there is also a Neutral category, it is more appropriate to classify the missing values as Neutral, as the customers could either be Satisfied or Unsatisfied.  
+The df['Satisfaction Level'].value_counts() function was used to analyze the column and support this decision.
+
+To implement this solution, the fillna() function from Pandas was applied:
 ```python
+df['Satisfaction Level'].fillna('Neutral', inplace=True)
+```
+After executing this code, the missing values were successfully replaced with Neutral. To confirm the change, running df['Satisfaction Level'].value_counts() now shows that the Neutral category has 109 occurrences instead of 107, verifying that the update was effective.
 
-df['Date'] = pd.to_datetime(df['Date'])  
-df.info()
-``` 
-After executing this code, the date column is successfully converted to the correct datetime data type. The snapshot below highlights the data type before and after cleaning, enclosed in a yellow rectangular shape.
+The snapshots below illustrate the Satisfaction Level column before and after cleaning, highlighted in a yellow rectangular shape.
 BEFORE CLEANING  |AFTER  CLEANING
 :---------------:|:--------------:
 ![](before.png)|![](Saless/dataclean.png)

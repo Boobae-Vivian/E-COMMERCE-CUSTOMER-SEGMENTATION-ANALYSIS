@@ -152,10 +152,31 @@ BEFORE CLEANING  |AFTER  CLEANING
    :-----------------------------:  
    ![](Saless/library.png) 
 
-### 1, Customer Segmentation
+### 2, Customer Segmentation
 #### a. Group customers based on their purchasing behavior
    ---
-   To group customers based on their purchasing behavior, you can use customer segmentation techniques. Here are some common methods:
+   There are several techniques for customer segmentation based on purchasing behavior. One of the most effective methods is Customer Clustering using K-Means, which helps identify hidden customer groups based on spending patterns.
+
+To achieve accurate segmentation, follow these steps:
+- Group the dataset by Customer ID, select and aggregate relevant columns (e.g., Total Spend, Items Purchased) and store them in a variable called data.
+- Normalize the data to ensure fair clustering.
+- Apply K-Means clustering to identify distinct customer segments.
+
+Interpretation of Customer Segments (0–3)
+Based on the clustering results, customers are categorized as follows:
+- Group 0 – Low spenders, infrequent buyers.
+- Group 1 – Mid-tier customers.
+- Group 2 – High-value customers.
+- Group 3 – Occasional big spenders.
+Therefore, the top five customer segments based on their purchasing behavior are:
+📌 Customer 101 → Mid-tier customer.
+📌 Customer 102 → High-value customer.
+📌 Customer 103 → Low spender / infrequent buyer.
+📌 Customer 104 → Occasional big spender.
+📌 Customer 105 → High-value customer.
+
+Below is the code snippet used to perform K-Means clustering and the resulting segment assignments.
+
    
   
 

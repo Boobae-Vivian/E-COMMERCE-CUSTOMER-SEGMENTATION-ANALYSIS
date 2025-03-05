@@ -9,15 +9,11 @@ The dataset provides a detailed view of customer transactions and interactions, 
    - What is the distribution of purchase frequency among customers?
    - What is the total revenue contribution of different customer groups?
 2. Customer Segmentation
-   - How can we group customers based on their purchasing behavior?
-   - What are the optimal number of clusters for segmenting customers using K-means?
-   - Are there outliers or unusual spending behaviors among customers?
+   - Group customers based on their purchasing behavior
 3. Visualization & Insights
-   - What do customer segments look like when visualized using scatter plots or bar charts?
-   - How do average purchase value and frequency differ across segments?
-   - Can we identify patterns or trends using heatmaps or distribution plots?
-   - What visual insights can help in making data-driven marketing decisions?
-
+   - Visualize customer groups based on spending behavior
+   - Compare the number of customers in each segment
+     
 ## SKILLS AND CONCEPTS DEMONSTRATED
 1. Data Handling & Preprocessing
 2. Descriptive Analytics & Statistical Analysis
@@ -69,7 +65,8 @@ To assess the dataset, several Pandas functions and attributes were utilized:
  distinct categories:
   - Satisfied: 125 occurrences
   - Unsatisfied: 116 occurrences
-  - Neutral: 107 occurrences
+  - Neutral: 107 occurrences  
+Additionally, box plots were generated using Seaborn (sns) and Matplotlib (plt) to detect outliers in the Total Spend and Items Purchased columns. The analysis indicated that no outliers were present in either column.
 
 Findings:  
 Based on these assessments, the only detected data quality issue is the two missing values in the Satisfaction Level column..
@@ -162,20 +159,28 @@ To achieve accurate segmentation, follow these steps:
 - Normalize the data to ensure fair clustering.
 - Apply K-Means clustering to identify distinct customer segments.
 
-Interpretation of Customer Segments (0–3)
+Interpretation of Customer Segments (0–3)  
 Based on the clustering results, customers are categorized as follows:
 - Group 0 – Low spenders, infrequent buyers.
 - Group 1 – Mid-tier customers.
 - Group 2 – High-value customers.
-- Group 3 – Occasional big spenders.
+- Group 3 – Occasional big spenders.  
 Therefore, the top five customer segments based on their purchasing behavior are:
-📌 Customer 101 → Mid-tier customer.
-📌 Customer 102 → High-value customer.
-📌 Customer 103 → Low spender / infrequent buyer.
-📌 Customer 104 → Occasional big spender.
-📌 Customer 105 → High-value customer.
+- Customer 101 → Mid-tier customer.
+- Customer 102 → High-value customer.
+- Customer 103 → Low spender / infrequent buyer.
+- Customer 104 → Occasional big spender.
+- Customer 105 → High-value customer.
 
-Below is the code snippet used to perform K-Means clustering and the resulting segment assignments.
+The snapshot below contains the code snippet for K-Means clustering along with the resulting segment assignments.
+ LIBRARIES AND DATA IMPORTATION  
+ :-----------------------------:  
+ ![](Saless/library.png)
+
+### 3, Visualization and Insights
+#### a. Visualize customer groups based on spending behavior
+   ---
+   
 
    
   

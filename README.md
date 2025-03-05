@@ -7,13 +7,9 @@ The dataset provides a detailed view of customer transactions and interactions, 
 1. Descriptive Statistics
    - What is the average purchase value per customer?
    - What is the distribution of purchase frequency among customers?
-   - What percentage of customers are one-time buyers versus repeat customers?
    - What is the total revenue contribution of different customer groups?
-   - Are there seasonal trends or patterns in customer purchases?
 2. Customer Segmentation
    - How can we group customers based on their purchasing behavior?
-   - What are the characteristics of each customer segment (e.g., high-value vs. low-value customers)?
-   - How do different segments vary in terms of purchase frequency, order value, and engagement?
    - What are the optimal number of clusters for segmenting customers using K-means?
    - Are there outliers or unusual spending behaviors among customers?
 3. Visualization & Insights
@@ -101,3 +97,74 @@ The snapshots below illustrate the Satisfaction Level column before and after cl
 BEFORE CLEANING  |AFTER  CLEANING
 :---------------:|:--------------:
 ![](before.png)|![](Saless/dataclean.png)
+
+4. "Data Manipulation and Visualization (Analysis of the Problem Statement)":
+   ---
+### 1, Descriptive Statistics 
+#### a. What is the average purchase value per customer?
+   ---
+
+   To calculate the average purchase value per customer, follow these steps:
+   - Group purchases by customer ID using the groupby function and aggregate total purchase per customer using the sum() function, then store the result in a variable 
+     called customer_purchases.
+   - Compute the average purchase value by applying the mean() function to customer_purchases, storing the result in avg_purchase_value.
+   - Print the result using formatted strings to display the final value, e.g., "Average Purchase Value per Customer: 845.38".  
+   The code snippet used to achieve this is shown in the snapshot below.
+
+   LIBRARIES AND DATA IMPORTATION  
+   :-----------------------------:  
+   ![](Saless/library.png)  
+   
+#### b. What is the distribution of purchase frequency among customers?
+   ---
+   To analyze the distribution of purchase frequency among customers, follow these steps:  
+   - Count the occurrences of each unique Customer ID and store the result in a variable named purchase_frequency.
+   - Generate summary statistics using the describe() function.
+   - Print the results to understand the spread of purchase frequency.  
+   The output reveals that every customer has made exactly one purchase, as indicated by the mean, standard deviation, and quartiles all equaling 1.  
+   The snapshot below shows the code snippet used to achieve this:
+
+   LIBRARIES AND DATA IMPORTATION  
+   :-----------------------------:  
+   ![](Saless/library.png) 
+
+#### c. What is the total revenue contribution of different customer groups?
+   ---
+   To calculate the total revenue contribution of different customer groups, follow these steps:
+
+   - Group customers by Customer ID and aggregate their total revenue using the sum() function, storing the result in customer_revenue.
+   - Define spending categories based on quantiles (['Low', 'Medium', 'High', 'VIP']) and classify customers accordingly, storing the categorized data in 
+     customer_revenue_groups.
+   - Create a DataFrame to display the total revenue contribution of each customer group and store it in revenue_by_group.
+   - Print revenue_by_group to analyze the distribution of revenue across different segments.
+   The output is as follows:
+
+   Customer Group  | Total Spend            
+  :---------------:|:--------------:
+  Low              |40,544.9
+  Medium	          |55,181  
+  High             |83,400.5
+  VIP              |116,757.2
+
+  The code snippet used to achieve this is shown in the snapshot below.
+  
+  LIBRARIES AND DATA IMPORTATION  
+   :-----------------------------:  
+   ![](Saless/library.png) 
+
+### 1, Customer Segmentation
+#### a. Group customers based on their purchasing behavior
+   ---
+   To group customers based on their purchasing behavior, you can use customer segmentation techniques. Here are some common methods:
+   
+  
+
+
+ 
+
+
+
+
+
+
+

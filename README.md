@@ -180,6 +180,62 @@ The snapshot below contains the code snippet for K-Means clustering along with t
 ### 3, Visualization and Insights
 #### a. Visualize customer groups based on spending behavior
    ---
+  To visualize customer groups based on spending behavior, a scatter plot is the most effective approach. In this case, we will plot Total Spend against Items Purchased. However, since our dataset lacks a Cluster column for color differentiation (hue), we must first apply K-Means clustering to segment the customers before visualizing the results.  
+Steps to Achieve This:  
+- Group the dataset by Customer ID and aggregate relevant columns (e.g., Total Spend, Items Purchased), storing them in a variable called data.
+- Normalize the data to ensure fair clustering.
+- Apply K-Means clustering to segment customers into distinct groups.  
+
+Below is the code snippet used to implement this, along with the resulting output shown in the snapshot.
+
+BEFORE CLEANING  |AFTER  CLEANING
+:---------------:|:--------------:
+![](before.png)|![](Saless/dataclean.png)
+
+Cluster Interpretations:
+- Lower left (bottom-left): Customers who made low purchases and spent less (likely low-value customers).
+- Middle region: Customers with moderate spending and purchases (mid-tier customers).
+- Upper right (top-right): Customers who spent a lot and purchased frequently (likely high-value or VIP customers).
+
+Insights from Clusters:
+- Groups closer together indicate similar purchasing behavior.
+- Customers in the same cluster (same color) have similar spending habits.
+- Higher-spending clusters are likely to be loyal or high-value customers, while lower-spending clusters might need engagement strategies.Interpretation of Results:
+
+#### b. Visualize customer groups based on spending behavior
+   ---
+   To compare the distribution of customers across different segments, a bar chart is used. This visualization effectively highlights the number of customers in each segment.
+
+The code and output for this analysis are shown in the snapshot below: 
+BEFORE CLEANING  |AFTER  CLEANING
+:---------------:|:--------------:
+![](before.png)|![](Saless/dataclean.png)
+
+Interpretation:
+Segments 0 & 1 (Largest Groups):  
+These segments consist of low or mid-tier customers, making up the majority of the customer base. Customers in these groups tend to spend less or purchase infrequently.
+
+Segments 2 & 3 (Smaller Groups):  
+These segments represent high-value or VIP customers who make frequent or large purchases. Despite being fewer in number, their contribution to total revenue is likely significant.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 
    

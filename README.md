@@ -40,16 +40,19 @@ The project comprises four critical stages essential for successful completion, 
 - Datetime (dt) – for handling date-related operations.
 - Matplotlib.pyplot (plt) and Seaborn (sns) – for data visualization.
 - Warnings – to suppress unnecessary warnings during execution.
-- Scipy.stats (pointbiserialr) – for statistical analysis.
+- Scikit-learn (sklearn):
+  - KMeans – for customer segmentation using clustering.
+  - StandardScaler – for normalizing data before clustering.
+  - silhouette_score – for evaluating clustering performance.
 
-  Once these libraries are imported, the next step is to load the sales dataset into the Jupyter Notebook environment as a DataFrame using the pd.read_csv() function. The 
-  dataset is assigned to a variable named df, allowing easy reference throughout the analysis.
+Once these libraries are imported, the next step is to load the sales dataset into the Jupyter Notebook environment as a DataFrame using the pd.read_csv() function. The 
+dataset is assigned to a variable named df, allowing easy reference throughout the analysis.
    
-  Below is a snapshot of the code snippet used for importing libraries, loading the dataset, and displaying the DataFrame.
+Below is a snapshot of the code snippet used for importing libraries, loading the dataset, and displaying the DataFrame.
 
-  LIBRARIES AND DATA IMPORTATION
-  :-----------------------------:
-  ![](Saless/library.png)
+LIBRARIES AND DATA IMPORTATION
+:-----------------------------:
+![](Saless/library.png)
 
 2. "Data Assessment to Detect Data Quality Issues":
    ---
@@ -59,8 +62,9 @@ To assess the dataset, several Pandas functions and attributes were utilized:
 
 - df.shape – Returns the dataset's dimensions (rows and columns). The dataset contains 350 rows and 11 columns.
 - df.info() – Provides a summary of the DataFrame, including data types and memory usage. The output confirms that all columns have the correct data types.
-- df.isnull().sum() – Counts missing values in each column. The result shows that the Satisfaction Level column has two missing values.
 - df.duplicated().sum() – Identifies duplicate rows. The output confirms that no duplicate records are present.
+- df.isnull().sum() – Counts missing values in each column. The result shows that the Satisfaction Level column has two missing values as seen in the B snapshot below 
+  highlighted in a yellow rectangular shape.
 - df['Satisfaction Level'].value_counts() – Examines the Satisfaction Level column to understand its unique categories and their frequencies. The results reveal three 
  distinct categories:
   - Satisfied: 125 occurrences
@@ -72,9 +76,15 @@ Findings:
 Based on these assessments, the only detected data quality issue is the two missing values in the Satisfaction Level column..
 
 These assessments and data quality issue detected are illustrated in the snapshots below. 
-A    |B    
+A    |B    |C   
+:---:|:---:|:---:
+![](Saless/datass1.png)|![](Saless/datass2.png)|![](Saless/datass2.png)
+D    |E    
 :---:|:---:
 ![](Saless/datass1.png)|![](Saless/datass2.png)
+FINDINGS    
+:---:
+![](Saless/datass1.png)|
 
 3. "Data Cleaning":
    ---
@@ -100,15 +110,14 @@ BEFORE CLEANING  |AFTER  CLEANING
 ### 1, Descriptive Statistics 
 #### a. What is the average purchase value per customer?
    ---
-
    To calculate the average purchase value per customer, follow these steps:
    - Group purchases by customer ID using the groupby function and aggregate total purchase per customer using the sum() function, then store the result in a variable 
      called customer_purchases.
    - Compute the average purchase value by applying the mean() function to customer_purchases, storing the result in avg_purchase_value.
-   - Print the result using formatted strings to display the final value, e.g., "Average Purchase Value per Customer: 845.38".  
+   - Print the result using formatted strings to display the final value, therefore, the "Average Purchase Value per Customer is: 845.38".  
    The code snippet used to achieve this is shown in the snapshot below.
 
-   LIBRARIES AND DATA IMPORTATION  
+   Average Purchase Value Per Customer
    :-----------------------------:  
    ![](Saless/library.png)  
    
@@ -121,18 +130,18 @@ BEFORE CLEANING  |AFTER  CLEANING
    The output reveals that every customer has made exactly one purchase, as indicated by the mean, standard deviation, and quartiles all equaling 1.  
    The snapshot below shows the code snippet used to achieve this:
 
-   LIBRARIES AND DATA IMPORTATION  
-   :-----------------------------:  
+   Distribution of Purchase Frequency among Customers
+   :-------------------------------------------------:  
    ![](Saless/library.png) 
 
 #### c. What is the total revenue contribution of different customer groups?
    ---
    To calculate the total revenue contribution of different customer groups, follow these steps:
 
-   - Group customers by Customer ID and aggregate their total revenue using the sum() function, storing the result in customer_revenue.
-   - Define spending categories based on quantiles (['Low', 'Medium', 'High', 'VIP']) and classify customers accordingly, storing the categorized data in 
+   - Group customers by Customer ID and aggregate their total revenue using the sum() function, storing the result in a variable called customer_revenue.
+   - Define spending categories based on quantiles (['Low', 'Medium', 'High', 'VIP']) and classify customers accordingly, storing the categorized data in the variable 
      customer_revenue_groups.
-   - Create a DataFrame to display the total revenue contribution of each customer group and store it in revenue_by_group.
+   - Create a DataFrame to display the total revenue contribution of each customer group and store it in the variable (revenue_by_group).
    - Print revenue_by_group to analyze the distribution of revenue across different segments.
    The output is as follows:
 
@@ -145,8 +154,8 @@ BEFORE CLEANING  |AFTER  CLEANING
 
   The code snippet used to achieve this is shown in the snapshot below.
   
-  LIBRARIES AND DATA IMPORTATION  
-   :-----------------------------:  
+  Total Revenue Contribution of Different Customer Groups
+   :-----------------------------------------------------:  
    ![](Saless/library.png) 
 
 ### 2, Customer Segmentation
@@ -173,14 +182,14 @@ Therefore, the top five customer segments based on their purchasing behavior are
 - Customer 105 → High-value customer.
 
 The snapshot below contains the code snippet for K-Means clustering along with the resulting segment assignments.
- LIBRARIES AND DATA IMPORTATION  
- :-----------------------------:  
+ Customers Based on their Purchasing Behavior  
+ :------------------------------------------:  
  ![](Saless/library.png)
 
 ### 3, Visualization and Insights
-#### a. Visualize customer groups based on spending behavior
+#### a. Use a scatter plot to visualize customer groups based on their spending behavior.
    ---
-  To visualize customer groups based on spending behavior, a scatter plot is the most effective approach. In this case, we will plot Total Spend against Items Purchased. However, since our dataset lacks a Cluster column for color differentiation (hue), we must first apply K-Means clustering to segment the customers before visualizing the results.  
+  To visualize customer groups based on spending behavior, a scatter plot is one of the most effective approach. In this case, we will plot Total Spend against Items Purchased. However, since our dataset lacks a Cluster column for color differentiation (hue), we must first apply K-Means clustering to segment the customers before visualizing the results.  
 Steps to Achieve This:  
 - Group the dataset by Customer ID and aggregate relevant columns (e.g., Total Spend, Items Purchased), storing them in a variable called data.
 - Normalize the data to ensure fair clustering.
@@ -188,26 +197,26 @@ Steps to Achieve This:
 
 Below is the code snippet used to implement this, along with the resulting output shown in the snapshot.
 
-BEFORE CLEANING  |AFTER  CLEANING
-:---------------:|:--------------:
+Scatter Plot Analysis  |Scatter Plot Visualization
+:--------------------: |:--------------:
 ![](before.png)|![](Saless/dataclean.png)
 
 Cluster Interpretations:
-- Lower left (bottom-left): Customers who made low purchases and spent less (likely low-value customers).
-- Middle region: Customers with moderate spending and purchases (mid-tier customers).
-- Upper right (top-right): Customers who spent a lot and purchased frequently (likely high-value or VIP customers).
+- Lower left (bottom-left): These are customers who made low purchases and spent less (low-value customers).
+- Middle region: These are customers with moderate spending and purchases (mid-tier customers).
+- Upper right (top-right): These are customers who spent a lot(likely high-value or VIP customers).
 
 Insights from Clusters:
 - Groups closer together indicate similar purchasing behavior.
 - Customers in the same cluster (same color) have similar spending habits.
-- Higher-spending clusters are likely to be loyal or high-value customers, while lower-spending clusters might need engagement strategies.Interpretation of Results:
+- Higher-spending clusters are likely to be loyal or high-value customers, while lower-spending clusters might need engagement strategies.
 
-#### b. Visualize customer groups based on spending behavior
+#### b. Use a bar chart to visualize customer groups based on their spending behavior.
    ---
    To compare the distribution of customers across different segments, a bar chart is used. This visualization effectively highlights the number of customers in each segment.
 
 The code and output for this analysis are shown in the snapshot below: 
-BEFORE CLEANING  |AFTER  CLEANING
+Bar Chart Analysis  |Bar Chart Visualization
 :---------------:|:--------------:
 ![](before.png)|![](Saless/dataclean.png)
 
@@ -216,7 +225,35 @@ Segments 0 & 1 (Largest Groups):
 These segments consist of low or mid-tier customers, making up the majority of the customer base. Customers in these groups tend to spend less or purchase infrequently.
 
 Segments 2 & 3 (Smaller Groups):  
-These segments represent high-value or VIP customers who make frequent or large purchases. Despite being fewer in number, their contribution to total revenue is likely significant.
+These segments represent high-value or VIP customers who made large purchases. Despite being fewer in number, their contribution to total revenue is highly significant.
+
+## RECOMMENDATION
+Based on the customer segmentation analysis, the following strategic recommendations can be made:
+
+1. Personalized Marketing Strategies:
+- Focus on VIP and high-value customers (Segments 2 & 3) with loyalty programs, exclusive discounts, and premium services to retain them and increase their spending.
+- Engage low and mid-tier customers (Segments 0 & 1) with targeted promotions, bundle deals, and email campaigns to encourage more frequent purchases.
+2. Customer Retention Initiatives:
+- Offer personalized recommendations based on purchase history to increase engagement.
+3. Pricing and Product Strategy:
+- Analyze purchasing patterns of different customer segments to adjust pricing strategies and product offerings accordingly.
+- Stock more of the products that VIP customers frequently purchase while ensuring affordability for mid-tier and low-tier customers.
+4. Improve Customer Experience:
+- Provide excellent customer service to VIPs while also improving the overall buying experience for all customers.
+- Use feedback from different segments to enhance service quality and customer satisfaction.
+
+## CONCLUSION
+This project successfully utilized K-Means clustering to segment customers based on their purchasing behavior, revealing distinct groups ranging from low spenders to high-value customers. The analysis provided actionable insights into how different customer groups contribute to overall revenue and how businesses can tailor their strategies to maximize profitability.  
+By leveraging data-driven segmentation, businesses can enhance customer engagement, optimize marketing efforts, and improve customer retention. Future work could include time-series analysis to identify seasonal trends or incorporating additional behavioral metrics for more refined segmentation.
+
+
+
+
+
+
+
+
+
 
 
 
